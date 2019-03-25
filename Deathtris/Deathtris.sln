@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2046
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Deathtris", "Deathtris\Deathtris.csproj", "{E5646D5C-00D1-4D22-8CD6-5FCF6B984BBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E5646D5C-00D1-4D22-8CD6-5FCF6B984BBF}.Debug|x86.ActiveCfg = Debug|x86
+		{E5646D5C-00D1-4D22-8CD6-5FCF6B984BBF}.Debug|x86.Build.0 = Debug|x86
+		{E5646D5C-00D1-4D22-8CD6-5FCF6B984BBF}.Release|x86.ActiveCfg = Release|x86
+		{E5646D5C-00D1-4D22-8CD6-5FCF6B984BBF}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {723FC3FB-F5DF-416E-9627-7F862206635E}
+	EndGlobalSection
+EndGlobal
