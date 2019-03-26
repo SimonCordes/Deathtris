@@ -14,8 +14,9 @@ namespace Deathtris.Components
         Idle,
         Left,
         Right,
-        JumpingLeft,
-        JumpingRight
+        Jumping,
+        //JumpingLeft,
+        //JumpingRight
     }
 
     class AnimatedSpriteRenderer : Component
@@ -32,8 +33,11 @@ namespace Deathtris.Components
         /// <summary>
         /// AnimationRectangle used to draw the player with the SpriteSheet, depending on which direction he is turning / jumping.
         /// </summary>
-        public Rectangle CurrentAnimationRectangle { get => animationRectangleSheet[(int)StartDirection, currentAnimationIndex]; }
-        protected PlayerDirection StartDirection { get => playerDirection; set => playerDirection = value; }
+        public Rectangle CurrentAnimationRectangle { get => animationRectangleSheet[(int)PlayerDirection, currentAnimationIndex]; }
+        /// <summary>
+        /// Used to get and set the direction the player is moving in.
+        /// </summary>
+        protected PlayerDirection PlayerDirection { get => playerDirection; set => playerDirection = value; }
 
         /// <summary>
         /// Constructor for a sprite with animation.
