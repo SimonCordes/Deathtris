@@ -16,11 +16,11 @@ namespace Deathtris
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private static ContentManager contentManager;
-        private static List<GameObject> allGameObjects = new List<GameObject>();
-        private static List<GameObject> toBeAdded = new List<GameObject>();
-        private static List<GameObject> toBeRemoved = new List<GameObject>();
+        private static List<GameObject> gameObjectsInWorld = new List<GameObject>();
+        private static List<GameObject> gameObjectsToBeAdded = new List<GameObject>();
+        private static List<GameObject> gameObjectsToBeRemoved = new List<GameObject>();
 
-        /// <summary>
+        /// <summary> 
         /// Gets the ContentManager.
         /// </summary>
         public static ContentManager ContentManager
@@ -92,7 +92,7 @@ namespace Deathtris
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin();
-            foreach (GameObject gameObject in allGameObjects)
+            foreach (GameObject gameObject in gameObjectsInWorld)
             {       
                 gameObject.Draw(spriteBatch);
             }
@@ -112,16 +112,16 @@ namespace Deathtris
         /// </summary>
         private void UpdateListOfGameObjects()
         {
-            foreach (GameObject gameObject in toBeRemoved)
+            foreach (GameObject gameObject in gameObjectsToBeRemoved)
             {
-                allGameObjects.Remove(gameObject);
+                gameObjectsInWorld.Remove(gameObject);
             }
-            toBeRemoved.Clear();
-            foreach (GameObject gameObject in toBeAdded)
+            gameObjectsToBeRemoved.Clear();
+            foreach (GameObject gameObject in gameObjectsToBeAdded)
             {
-                allGameObjects.Add(gameObject);
+                gameObjectsInWorld.Add(gameObject);
             }
-            toBeAdded.Clear();
+            gameObjectsToBeAdded.Clear();
 
         }
 
@@ -133,8 +133,8 @@ namespace Deathtris
         {
             try
             {
-                //gameObject.LoadContent();
-                toBeAdded.Add(gameObject);
+                gameObject.LoadContent(contentManager);
+                gameObjectsToBeAdded.Add(gameObject);
             }
             catch (Exception e)
             {
@@ -150,7 +150,7 @@ namespace Deathtris
         /// <param name="gameObject"></param>
         public static void RemoveGameObject(GameObject gameObject)
         {
-            toBeRemoved.Remove(gameObject);
+            gameObjectsToBeRemoved.Remove(gameObject);
         }
 
 

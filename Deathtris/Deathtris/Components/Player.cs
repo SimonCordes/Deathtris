@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Deathtris.Components
 {
-    class Player
+    class Player : Component
     {
     }
 }
