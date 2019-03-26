@@ -1,18 +1,34 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Deathtris
 {
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class Game1 : Game
+    public class GameWorld : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private static ContentManager contentManager;
+        private static List<GameObject> allGameObjects = new List<GameObject>();
+        private static List<GameObject> toBeAdded = new List<GameObject>();
+        private static List<GameObject> toBeRemoved = new List<GameObject>();
 
-        public Game1()
+        /// <summary>
+        /// Gets the ContentManager.
+        /// </summary>
+        public static ContentManager ContentManager
+        {
+            get { return contentManager; }
+        }
+
+        public GameWorld()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -61,6 +77,7 @@ namespace Deathtris
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            UpdateListOfGameObjects();
 
             // TODO: Add your update logic here
 
@@ -74,10 +91,71 @@ namespace Deathtris
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+            spriteBatch.Begin();
+            foreach (GameObject gameObject in allGameObjects)
+            {       
+                gameObject.Draw(spriteBatch);
+            }
+
+            spriteBatch.End();
 
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
         }
+
+
+        #region GameObject Handling
+
+        /// <summary>
+        /// Handles the update logic for the lists in the GameWorld.
+        /// </summary>
+        private void UpdateListOfGameObjects()
+        {
+            foreach (GameObject gameObject in toBeRemoved)
+            {
+                allGameObjects.Remove(gameObject);
+            }
+            toBeRemoved.Clear();
+            foreach (GameObject gameObject in toBeAdded)
+            {
+                allGameObjects.Add(gameObject);
+            }
+            toBeAdded.Clear();
+
+        }
+
+        /// <summary>
+        /// Adds a GameObject to the world. 
+        /// </summary>
+        /// <param name="gameObject"></param>
+        public static void AddGameObject(GameObject gameObject)
+        {
+            try
+            {
+                //gameObject.LoadContent();
+                toBeAdded.Add(gameObject);
+            }
+            catch (Exception e)
+            {
+
+                Debug.Print(e.Message);
+            }
+        }
+        
+
+        /// <summary>
+        /// Removes the object from the GameWorld.
+        /// </summary>
+        /// <param name="gameObject"></param>
+        public static void RemoveGameObject(GameObject gameObject)
+        {
+            toBeRemoved.Remove(gameObject);
+        }
+
+
+
+        #endregion
+
     }
 }
