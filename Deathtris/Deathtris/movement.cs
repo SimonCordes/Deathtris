@@ -12,13 +12,16 @@ namespace Deathtris
     {
         private Vector2 velocity;
 
-        public movement(Vector2 velocity, Enum PlayerDirection)
+        public movement(Vector2 velocity)
         {
             this.velocity = velocity;
         }
+
         public void Execute(Player player)
         {
             player.Move(velocity);
         }
+
+
     }
 }

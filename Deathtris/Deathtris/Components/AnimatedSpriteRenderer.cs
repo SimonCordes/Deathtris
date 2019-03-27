@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace Deathtris.Components
         private float animationFPS;
         private int frameCountHeight;
         private int frameCountWidth;
-        private PlayerDirection playerDirection = PlayerDirection.Left;
+        private PlayerDirection playerDirection = PlayerDirection.Idle;
 
 
         /// <summary>
@@ -77,6 +78,22 @@ namespace Deathtris.Components
         {
 
         }
+
+        private void ChangeDirection()
+        {
+            KeyboardState keyState = Keyboard.GetState();
+            if (keyState.IsKeyDown(Keys.A))
+            {
+                PlayerDirection = PlayerDirection.Left;
+               
+            }
+            else if (keyState.IsKeyDown(Keys.D))
+            {
+                PlayerDirection = PlayerDirection.Right;
+            }
+            else { PlayerDirection = PlayerDirection.Idle; }
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -96,6 +113,7 @@ namespace Deathtris.Components
                 timeElapsed = 0;
                 currentAnimationIndex = 0;
             }
+            ChangeDirection();
 
         }
 
