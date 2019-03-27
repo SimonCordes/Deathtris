@@ -21,6 +21,7 @@ namespace Deathtris
         private static List<GameObject> gameObjectsToBeAdded = new List<GameObject>();
         private static List<GameObject> gameObjectsToBeRemoved = new List<GameObject>();
         GameObject player = new GameObject(new Vector2(200,200));
+        GameObject player2 = new GameObject(new Vector2(100, 100));
         public static float deltaTime;
         /// <summary> 
         /// Gets the ContentManager.
@@ -47,8 +48,11 @@ namespace Deathtris
             // TODO: Add your initialization logic here
             contentManager = Content;
             player.AddComponent(new Player(50f));
-            player.AddComponent(new AnimatedSpriteRenderer(player, "Skeleton", 5, 4, 4));
+            player.AddComponent(new AnimatedSpriteRenderer(player, "idle_spritesheet", 25, 1, 24));
+            player2.AddComponent(new Player(50f));
+            player2.AddComponent(new AnimatedSpriteRenderer(player, "Skeleton", 5, 4, 4));
             gameObjectsInWorld.Add(player);
+            gameObjectsInWorld.Add(player2);
             base.Initialize();
         }
 

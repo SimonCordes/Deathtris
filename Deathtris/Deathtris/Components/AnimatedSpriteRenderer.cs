@@ -61,7 +61,7 @@ namespace Deathtris.Components
             {
                 for (int y = 0; y < frameCountWidth; y++)
                 {
-                    animationRectangleSheet[x, y] = new Rectangle(x * width, y * height, width, height);
+                    animationRectangleSheet[x, y] = new Rectangle(x * height, y * width, width, height);
                 }
             }
 
