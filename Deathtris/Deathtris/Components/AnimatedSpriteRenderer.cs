@@ -49,8 +49,7 @@ namespace Deathtris.Components
         /// <param name="frameCountWidth">How wide the spritesheet is</param>
         public AnimatedSpriteRenderer(GameObject gameObject, string spriteName, int animationFPS, int frameCountHeight, int frameCountWidth)
         {
-            sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
-            
+
             this.spriteName = spriteName;
             this.animationFPS = animationFPS;
             animationRectangleSheet = new Rectangle[frameCountHeight, frameCountWidth];
@@ -73,6 +72,7 @@ namespace Deathtris.Components
         public override void LoadContent(ContentManager content)
         {
             sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
+
         }
         /// <summary>
         /// 
@@ -80,7 +80,7 @@ namespace Deathtris.Components
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-
+            spriteBatch.Draw(sprite, gameObject.GetTransform.Position, CurrentAnimationRectangle, Color.White);
 
         }
 
