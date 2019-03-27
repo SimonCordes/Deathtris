@@ -21,6 +21,12 @@ namespace Deathtris
             transform = new Transform(this, GetTransform.Position);
         }
 
+        
+        public void AddComponent(Component component)
+        {
+            component.Attach(this);
+            components.Add(component);
+        }
 
         public Component GetComponent(string componentName)
         {
@@ -68,6 +74,7 @@ namespace Deathtris
                 component.Draw(spriteBatch);
             }
         }
+        
         
         /// <summary>
         /// Removes the GameObject from the world.
