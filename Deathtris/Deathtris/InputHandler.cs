@@ -14,7 +14,7 @@ namespace Deathtris
         static InputHandler instance;
         private Dictionary<Keys, ICommand> keybinds = new Dictionary<Keys, ICommand>();
 
-       public InputHandler()
+        public InputHandler()
         {
             keybinds.Add(Keys.A, new movement(new Vector2(-1, 0)));
             keybinds.Add(Keys.D, new movement(new Vector2(1, 0)));
@@ -22,7 +22,7 @@ namespace Deathtris
         }
         public static InputHandler Instance
         {
-             get
+            get
             {
                 if (instance == null)
                 {
@@ -36,7 +36,7 @@ namespace Deathtris
         {
             KeyboardState keystate = Keyboard.GetState();
 
-            foreach(Keys key in keybinds.Keys)
+            foreach (Keys key in keybinds.Keys)
             {
                 if (keystate.IsKeyDown(key))
                 {

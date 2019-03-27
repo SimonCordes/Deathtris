@@ -27,6 +27,8 @@ namespace Deathtris.Components
         protected double timeElapsed = 0;
         protected int currentAnimationIndex = 0;
         private float animationFPS;
+        private int frameCountHeight;
+        private int frameCountWidth;
         private PlayerDirection playerDirection = PlayerDirection.Idle;
 
 
@@ -50,18 +52,19 @@ namespace Deathtris.Components
         public AnimatedSpriteRenderer(GameObject gameObject, string spriteName, int animationFPS, int frameCountHeight, int frameCountWidth)
         {
             sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
-
+            this.frameCountHeight = frameCountHeight;
+            this.frameCountWidth = frameCountWidth;
             this.spriteName = spriteName;
             this.animationFPS = animationFPS;
             animationRectangleSheet = new Rectangle[frameCountHeight, frameCountWidth];
             int height = sprite.Height / frameCountHeight;
             int width = sprite.Width / frameCountWidth;
 
-            for (int x = 0; x < frameCountHeight; x++)
+            for (int x = 0; x < frameCountWidth; x++)
             {
-                for (int y = 0; y < frameCountWidth; y++)
+                for (int y = 0; y < frameCountHeight; y++)
                 {
-                    animationRectangleSheet[x, y] = new Rectangle(x * height, y * width, width, height);
+                    animationRectangleSheet[y,x] = new Rectangle(x * width, y * height, width, height);
                 }
             }
 
@@ -88,7 +91,7 @@ namespace Deathtris.Components
         {
             timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
             currentAnimationIndex = (int)(timeElapsed * animationFPS);
-            if (currentAnimationIndex > animationRectangleSheet.GetLength(0) - 1)
+            if (currentAnimationIndex >= frameCountWidth)
             {
                 timeElapsed = 0;
                 currentAnimationIndex = 0;
