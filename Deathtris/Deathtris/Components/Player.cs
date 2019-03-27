@@ -8,5 +8,6 @@ namespace Deathtris.Components
 {
     class Player : Component
     {
+        float speed = 50f;
     }
 }
