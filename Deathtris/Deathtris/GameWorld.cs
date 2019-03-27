@@ -48,11 +48,11 @@ namespace Deathtris
             // TODO: Add your initialization logic here
             contentManager = Content;
             player.AddComponent(new Player(50f));
-            player.AddComponent(new AnimatedSpriteRenderer(player, "idle_spritesheet", 24, 1, 24));
-            //player2.AddComponent(new Player(50f));
-            //player2.AddComponent(new AnimatedSpriteRenderer(player2, "Skeleton", 4, 4, 4));
+            player.AddComponent(new AnimatedSpriteRenderer(player, "spritesheet", 26, 3, 26));
+            player2.AddComponent(new Player(50f));
+            player2.AddComponent(new AnimatedSpriteRenderer(player2, "Skeleton", 4, 4, 4));
             gameObjectsInWorld.Add(player);
-            //gameObjectsInWorld.Add(player2);
+            gameObjectsInWorld.Add(player2);
             base.Initialize();
         }
 
