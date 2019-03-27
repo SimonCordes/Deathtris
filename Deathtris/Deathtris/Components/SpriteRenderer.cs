@@ -14,6 +14,8 @@ namespace Deathtris.Components
         private string spriteName;
         private Texture2D sprite;
 
+        public Texture2D Sprite { get => sprite; set => sprite = value; }
+
         /// <summary>
         /// Constructor for a spriterenderer without any animations.
         /// </summary>
@@ -30,12 +32,12 @@ namespace Deathtris.Components
         /// <param name="content"></param>
         public override void LoadContent(ContentManager content)
         {
-            sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
+            Sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, gameObject.GetTransform.Position, Color.White);
+            spriteBatch.Draw(Sprite, gameObject.GetTransform.Position, Color.White);
         }
     }
 }

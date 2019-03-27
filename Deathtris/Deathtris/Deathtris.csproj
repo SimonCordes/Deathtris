@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Components\AnimatedSpriteRenderer.cs" />
     <Compile Include="Components\Block.cs" />
+    <Compile Include="Components\BlockCollider.cs" />
     <Compile Include="Components\Component.cs" />
     <Compile Include="Components\Player.cs" />
     <Compile Include="Components\PowerUp.cs" />
