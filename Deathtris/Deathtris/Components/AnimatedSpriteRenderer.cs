@@ -29,7 +29,7 @@ namespace Deathtris.Components
         private float animationFPS;
         private int frameCountHeight;
         private int frameCountWidth;
-        private PlayerDirection playerDirection = PlayerDirection.Idle;
+        private PlayerDirection playerDirection = PlayerDirection.Left;
 
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace Deathtris.Components
         /// <summary>
         /// Used to get and set the direction the player is moving in.
         /// </summary>
-        protected PlayerDirection PlayerDirection { get => playerDirection; set => playerDirection = value; }
+        public PlayerDirection PlayerDirection { get => playerDirection; set => playerDirection = value; }
 
         /// <summary>
         /// Constructor for a sprite with animation.
