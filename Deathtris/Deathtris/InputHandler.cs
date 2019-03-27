@@ -13,12 +13,12 @@ namespace Deathtris
     {
         static InputHandler instance;
         private Dictionary<Keys, ICommand> keybinds = new Dictionary<Keys, ICommand>();
-
+        public PlayerDirection playerDirection = PlayerDirection.Idle;
         public InputHandler()
         {
-            keybinds.Add(Keys.A, new movement(new Vector2(-1, 0)));
-            keybinds.Add(Keys.D, new movement(new Vector2(1, 0)));
-            keybinds.Add(Keys.W, new movement(new Vector2(0, 1)));
+            keybinds.Add(Keys.A, new movement(new Vector2(-1, 0), PlayerDirection.Left));
+            keybinds.Add(Keys.D, new movement(new Vector2(1, 0), PlayerDirection.Right));
+            keybinds.Add(Keys.W, new movement(new Vector2(0, 1), PlayerDirection.Jumping));
         }
         public static InputHandler Instance
         {

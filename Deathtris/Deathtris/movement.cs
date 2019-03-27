@@ -12,7 +12,7 @@ namespace Deathtris
     {
         private Vector2 velocity;
 
-        public movement(Vector2 velocity)
+        public movement(Vector2 velocity, Enum PlayerDirection)
         {
             this.velocity = velocity;
         }
