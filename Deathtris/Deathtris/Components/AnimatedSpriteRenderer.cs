@@ -49,6 +49,7 @@ namespace Deathtris.Components
         /// <param name="frameCountWidth">How wide the spritesheet is</param>
         public AnimatedSpriteRenderer(GameObject gameObject, string spriteName, int animationFPS, int frameCountHeight, int frameCountWidth)
         {
+            sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
 
             this.spriteName = spriteName;
             this.animationFPS = animationFPS;
@@ -71,7 +72,6 @@ namespace Deathtris.Components
         /// <param name="content"></param>
         public override void LoadContent(ContentManager content)
         {
-            sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
 
         }
         /// <summary>

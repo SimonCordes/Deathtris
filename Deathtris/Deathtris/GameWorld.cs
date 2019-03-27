@@ -45,7 +45,10 @@ namespace Deathtris
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-           
+            contentManager = Content;
+            player.AddComponent(new Player(50f));
+            player.AddComponent(new AnimatedSpriteRenderer(player, "Skeleton", 5, 4, 4));
+            gameObjectsInWorld.Add(player);
             base.Initialize();
         }
 
@@ -60,8 +63,7 @@ namespace Deathtris
 
 
 
-            player.AddComponent(new Player(50f));
-            player.AddComponent(new AnimatedSpriteRenderer(player, "Skeleton", 5, 4, 4));
+           
 
             
             
