@@ -9,5 +9,6 @@ namespace Deathtris.Components
     class Player : Component
     {
         float speed = 50f;
+        string wtf = "does it work";
     }
 }
