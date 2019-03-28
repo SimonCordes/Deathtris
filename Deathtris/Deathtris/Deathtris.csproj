@@ -50,6 +50,9 @@
     <Compile Include="Components\Transform.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameWorld.cs" />
+    <Compile Include="ICommand.cs" />
+    <Compile Include="InputHandler.cs" />
+    <Compile Include="movement.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,11 +1,11 @@
-﻿using Deathtris.Components;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using Deathtris.Components;
 
 namespace Deathtris
 {
@@ -20,7 +20,9 @@ namespace Deathtris
         private static List<GameObject> gameObjectsInWorld = new List<GameObject>();
         private static List<GameObject> gameObjectsToBeAdded = new List<GameObject>();
         private static List<GameObject> gameObjectsToBeRemoved = new List<GameObject>();
-
+        GameObject player = new GameObject(new Vector2(200,200));
+        GameObject player2 = new GameObject(new Vector2(100, 100));
+        public static float deltaTime;
         /// <summary> 
         /// Gets the ContentManager.
         /// </summary>
@@ -44,7 +46,13 @@ namespace Deathtris
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            contentManager = Content;
+            player.AddComponent(new Player(50f));
+            player.AddComponent(new AnimatedSpriteRenderer(player, "spritesheet", 26, 3, 26));
+            player2.AddComponent(new Player(50f));
+            player2.AddComponent(new AnimatedSpriteRenderer(player2, "Skeleton", 4, 4, 4));
+            gameObjectsInWorld.Add(player);
+            gameObjectsInWorld.Add(player2);
             base.Initialize();
         }
 
@@ -56,7 +64,16 @@ namespace Deathtris
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+
+
+
+           
+
             
+            
+            
+           
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -78,8 +95,12 @@ namespace Deathtris
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
             UpdateListOfGameObjects();
-
+            foreach (GameObject gameObject in gameObjectsInWorld)
+            {
+                gameObject.Update(gameTime);
+            }
             // TODO: Add your update logic here
 
             base.Update(gameTime);

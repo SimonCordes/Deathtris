@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,8 @@ namespace Deathtris.Components
         protected double timeElapsed = 0;
         protected int currentAnimationIndex = 0;
         private float animationFPS;
+        private int frameCountHeight;
+        private int frameCountWidth;
         private PlayerDirection playerDirection = PlayerDirection.Idle;
 
 
@@ -37,7 +40,7 @@ namespace Deathtris.Components
         /// <summary>
         /// Used to get and set the direction the player is moving in.
         /// </summary>
-        protected PlayerDirection PlayerDirection { get => playerDirection; set => playerDirection = value; }
+        public PlayerDirection PlayerDirection { get => playerDirection; set => playerDirection = value; }
 
         /// <summary>
         /// Constructor for a sprite with animation.
@@ -50,18 +53,19 @@ namespace Deathtris.Components
         public AnimatedSpriteRenderer(GameObject gameObject, string spriteName, int animationFPS, int frameCountHeight, int frameCountWidth)
         {
             sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
-            
+            this.frameCountHeight = frameCountHeight;
+            this.frameCountWidth = frameCountWidth;
             this.spriteName = spriteName;
             this.animationFPS = animationFPS;
             animationRectangleSheet = new Rectangle[frameCountHeight, frameCountWidth];
             int height = sprite.Height / frameCountHeight;
             int width = sprite.Width / frameCountWidth;
 
-            for (int x = 0; x < frameCountHeight; x++)
+            for (int x = 0; x < frameCountWidth; x++)
             {
-                for (int y = 0; y < frameCountWidth; y++)
+                for (int y = 0; y < frameCountHeight; y++)
                 {
-                    animationRectangleSheet[x, y] = new Rectangle(x * width, y * height, width, height);
+                    animationRectangleSheet[y,x] = new Rectangle(x * width, y * height, width, height);
                 }
             }
 
@@ -72,15 +76,31 @@ namespace Deathtris.Components
         /// <param name="content"></param>
         public override void LoadContent(ContentManager content)
         {
-            sprite = GameWorld.ContentManager.Load<Texture2D>(spriteName);
+
         }
+
+        private void ChangeDirection()
+        {
+            KeyboardState keyState = Keyboard.GetState();
+            if (keyState.IsKeyDown(Keys.A))
+            {
+                PlayerDirection = PlayerDirection.Left;
+               
+            }
+            else if (keyState.IsKeyDown(Keys.D))
+            {
+                PlayerDirection = PlayerDirection.Right;
+            }
+            else { PlayerDirection = PlayerDirection.Idle; }
+        }
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="spriteBatch"></param>
         public override void Draw(SpriteBatch spriteBatch)
         {
-
+            spriteBatch.Draw(sprite, gameObject.GetTransform.Position, CurrentAnimationRectangle, Color.White);
 
         }
 
@@ -88,11 +108,12 @@ namespace Deathtris.Components
         {
             timeElapsed += gameTime.ElapsedGameTime.TotalSeconds;
             currentAnimationIndex = (int)(timeElapsed * animationFPS);
-            if (currentAnimationIndex > animationRectangleSheet.GetLength(0) - 1)
+            if (currentAnimationIndex >= frameCountWidth)
             {
                 timeElapsed = 0;
                 currentAnimationIndex = 0;
             }
+            ChangeDirection();
 
         }
 

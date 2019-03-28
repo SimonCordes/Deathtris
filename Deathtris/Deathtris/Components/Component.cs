@@ -13,7 +13,10 @@ namespace Deathtris.Components
     {
 
         protected GameObject gameObject;
-        public GameObject GetGameObject { get { return gameObject; } }
+        public GameObject GetGameObject
+        {
+            get { return gameObject; }
+        }
 
         public void Attach(GameObject gameObject)
         {

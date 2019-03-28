@@ -16,9 +16,9 @@ namespace Deathtris
         private readonly Transform transform;
         public Transform GetTransform { get { return transform; } }
 
-        public GameObject()
+        public GameObject(Vector2 position)
         {
-            transform = new Transform(this, GetTransform.Position);
+            transform = new Transform(this, position);
         }
 
         
@@ -41,6 +41,11 @@ namespace Deathtris
 
             return null;
 
+        }
+        public void AddComponent(Component component)
+        {
+            component.Attach(this);
+            components.Add(component);
         }
 
         /// <summary>
