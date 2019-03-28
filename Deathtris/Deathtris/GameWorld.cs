@@ -56,7 +56,7 @@ namespace Deathtris
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            player.AddComponent(new Player(500f, 100f));
+            player.AddComponent(new Player(1f, 30f));
             player.AddComponent(new AnimatedSpriteRenderer(player, "spritesheet", 26, 5, 26));
             gameObjectsInWorld.Add(player);
             
@@ -113,6 +113,7 @@ namespace Deathtris
         {
             GraphicsDevice.Clear(Color.TransparentBlack);
             spriteBatch.Begin();
+            spriteBatch.Draw(backgroundImage, new Vector2(0, 0), null, null, null, 0, null, Color.White, SpriteEffects.None, 0.5f);
 
             foreach (GameObject gameObject in gameObjectsInWorld)
             {       

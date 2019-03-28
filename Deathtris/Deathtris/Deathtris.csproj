@@ -41,6 +41,9 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CommandPattern\StopCommand.cs" />
+    <Compile Include="Components\BlockCollider.cs" />
+    <Compile Include="Components\MapCollider.cs" />
     <Compile Include="Components\AnimatedSpriteRenderer.cs" />
     <Compile Include="Components\Block.cs" />
     <Compile Include="Components\Component.cs" />
@@ -48,6 +51,7 @@
     <Compile Include="Components\Player.cs" />
     <Compile Include="Components\PowerUp.cs" />
     <Compile Include="Components\SpriteRenderer.cs" />
+    <Compile Include="Components\StandardCollider.cs" />
     <Compile Include="Components\Transform.cs" />
     <Compile Include="GameObject.cs" />
     <Compile Include="GameWorld.cs" />
