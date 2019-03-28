@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Deathtris.Components;
 
+
 namespace Deathtris
 {
-    class movement: ICommand
+    public class MoveCommand: ICommand
     {
         private Vector2 velocity;
 
-        public movement(Vector2 velocity)
+        public MoveCommand(Vector2 velocity)
         {
             this.velocity = velocity;
         }

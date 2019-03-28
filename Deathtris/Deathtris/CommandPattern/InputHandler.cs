@@ -15,9 +15,9 @@ namespace Deathtris
         private Dictionary<Keys, ICommand> keybinds = new Dictionary<Keys, ICommand>();
         public InputHandler()
         {
-            keybinds.Add(Keys.A, new movement(new Vector2(-1, 0)));
-            keybinds.Add(Keys.D, new movement(new Vector2(1, 0)));
-            keybinds.Add(Keys.W, new movement(new Vector2(0, -1)));
+            keybinds.Add(Keys.A, new MoveCommand(new Vector2(-10, 0)));
+            keybinds.Add(Keys.D, new MoveCommand(new Vector2(10, 0)));
+            keybinds.Add(Keys.W, new JumpCommand(new Vector2(0, -10)));
         }
         public static InputHandler Instance
         {

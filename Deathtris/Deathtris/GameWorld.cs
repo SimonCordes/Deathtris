@@ -16,12 +16,18 @@ namespace Deathtris
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private Texture2D backgroundImage;
         private static ContentManager contentManager;
         private static List<GameObject> gameObjectsInWorld = new List<GameObject>();
         private static List<GameObject> gameObjectsToBeAdded = new List<GameObject>();
         private static List<GameObject> gameObjectsToBeRemoved = new List<GameObject>();
-        GameObject player = new GameObject(new Vector2(200,200));
-        GameObject player2 = new GameObject(new Vector2(100, 100));
+
+        
+            
+
+
+        GameObject player = new GameObject(new Vector2(1000,900));
+        
         public static float deltaTime;
         /// <summary> 
         /// Gets the ContentManager.
@@ -35,6 +41,10 @@ namespace Deathtris
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            contentManager = Content;
+            graphics.PreferredBackBufferHeight = 1080;
+            graphics.PreferredBackBufferWidth = 1920;
+
         }
 
         /// <summary>
@@ -46,13 +56,10 @@ namespace Deathtris
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            contentManager = Content;
-            player.AddComponent(new Player(50f));
+            player.AddComponent(new Player(500f, 100f));
             player.AddComponent(new AnimatedSpriteRenderer(player, "spritesheet", 26, 5, 26));
-            player2.AddComponent(new Player(50f));
-            player2.AddComponent(new AnimatedSpriteRenderer(player2, "Skeleton", 4, 4, 4));
             gameObjectsInWorld.Add(player);
-            gameObjectsInWorld.Add(player2);
+            
             base.Initialize();
         }
 
@@ -64,15 +71,7 @@ namespace Deathtris
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
-
-
-           
-
-            
-            
-            
-           
+            backgroundImage = Content.Load<Texture2D>("SpriteBagground");
 
             // TODO: use this.Content to load your game content here
         }
@@ -112,8 +111,9 @@ namespace Deathtris
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.TransparentBlack);
             spriteBatch.Begin();
+
             foreach (GameObject gameObject in gameObjectsInWorld)
             {       
                 gameObject.Draw(spriteBatch);
