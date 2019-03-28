@@ -15,9 +15,10 @@ namespace Deathtris
         private List<Component> components = new List<Component>();
         private readonly Transform transform;
         private readonly SpriteRenderer spriteRender;
+        private readonly MapCollision mapCollision;
         public Transform GetTransform { get { return transform; } }
         public SpriteRenderer GetSpriteRender { get { return spriteRender; } }
-
+        public MapCollision GetMapCollision { get { return mapCollision; } }
         public GameObject(Vector2 position)
         {
             transform = new Transform(this, position);
@@ -25,6 +26,10 @@ namespace Deathtris
         public GameObject(Texture2D sprite)
         {
             spriteRender = new SpriteRenderer(this, "");
+        }
+        public GameObject()
+        {
+            mapCollision = new MapCollision(this);
         }
 
         public Component GetComponent(string componentName)
@@ -40,6 +45,13 @@ namespace Deathtris
 
             return null;
 
+        }
+        public virtual void CollisionSetup()
+        {
+            foreach (Component component in components)
+            {
+                component.CollisionSetup();
+            }
         }
         public void AddComponent(Component component)
         {

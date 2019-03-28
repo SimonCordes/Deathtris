@@ -16,7 +16,7 @@ namespace Deathtris
     /// </summary>
     public class GameWorld : Game
     {
-        GraphicsDeviceManager graphics;
+        static GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private static ContentManager contentManager;
         private static List<GameObject> gameObjectsInWorld = new List<GameObject>();
@@ -26,6 +26,13 @@ namespace Deathtris
         GameObject player2 = new GameObject(new Vector2(100, 100));
         private SoundEffect effect;
 
+        public static Rectangle ScreenSize
+        {
+            get
+            {
+                return graphics.GraphicsDevice.Viewport.Bounds;
+            }
+        }
         public static float deltaTime;
         /// <summary> 
         /// Gets the ContentManager.
@@ -39,6 +46,8 @@ namespace Deathtris
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            graphics.PreferredBackBufferWidth = 500;
+            graphics.PreferredBackBufferHeight = 800;
         }
 
         /// <summary>
@@ -106,7 +115,23 @@ namespace Deathtris
                 gameObject.Update(gameTime);
             }
             // TODO: Add your update logic here
+            foreach (GameObject g in gameObjectsInWorld)
+            {
+                g.Update(gameTime);
+            }
 
+
+            foreach (GameObject g in gameObjectsToBeRemoved)
+                gameObjectsToBeRemoved.Remove(g);
+
+            gameObjectsToBeRemoved.Clear();
+
+            foreach (GameObject g in gameObjectsToBeAdded)
+            {
+                g.LoadContent(Content);
+                g.CollisionSetup();
+                gameObjectsToBeAdded.Add(g);
+            }
             base.Update(gameTime);
         }
 

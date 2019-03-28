@@ -10,7 +10,8 @@ namespace Deathtris.Components
     class Player : Component
     {
         string test;
-        
+        private MapCollision collision;
+        private Transform transform;
         float speed;
         Vector2 position = new Vector2(400, 200);
 
@@ -29,10 +30,16 @@ namespace Deathtris.Components
             velocity *= speed;
             gameObject.GetTransform.Translation(velocity * GameWorld.deltaTime);
         }
+        public override void CollisionSetup()
+        {
+            collision = gameObject.GetMapCollision;
+            transform = gameObject.GetTransform;
+            Console.WriteLine("lortet virker");
+        }
         public override void Update(GameTime gameTime)
         {
             InputHandler.Instance.Execute(this);
-
+            if ()
         }
 
     }
