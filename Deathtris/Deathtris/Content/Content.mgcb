@@ -13,6 +13,24 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin DNDfast.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:DNDfast.wav
+
+#begin DNDmedium.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:DNDmedium.wav
+
+#begin DNDslow.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:DNDslow.wav
+
 #begin idle_spritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor

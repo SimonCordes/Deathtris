@@ -17,6 +17,9 @@ namespace Deathtris
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         private Texture2D backgroundImage;
+        //counter
+        private float currentTime = 0f;
+
         private static ContentManager contentManager;
         private static List<GameObject> gameObjectsInWorld = new List<GameObject>();
         private static List<GameObject> gameObjectsToBeAdded = new List<GameObject>();
@@ -101,7 +104,24 @@ namespace Deathtris
                 gameObject.Update(gameTime);
             }
             // TODO: Add your update logic here
+            currentTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Console.WriteLine(currentTime);
 
+            if (currentTime == 10)
+            {
+                //music 2
+
+            }
+            else if (currentTime == 20)
+            {
+                //music 3
+
+            }
+            else  
+            {
+                //add other logic here
+            }
+            
             base.Update(gameTime);
         }
 
