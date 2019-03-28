@@ -22,7 +22,10 @@ namespace Deathtris.Components
         {
             this.gameObject = gameObject;
         }
+        public virtual void CollisionSetup()
+        {
 
+        }
         public virtual void LoadContent(ContentManager content)
         {
 
@@ -37,6 +40,7 @@ namespace Deathtris.Components
         {
 
         }
+
 
        
     }

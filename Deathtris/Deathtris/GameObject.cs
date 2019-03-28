@@ -14,13 +14,18 @@ namespace Deathtris
     {
         private List<Component> components = new List<Component>();
         private readonly Transform transform;
+        private readonly SpriteRenderer spriteRender;
         public Transform GetTransform { get { return transform; } }
+        public SpriteRenderer GetSpriteRender { get { return spriteRender; } }
 
         public GameObject(Vector2 position)
         {
             transform = new Transform(this, position);
         }
-
+        public GameObject(Texture2D sprite)
+        {
+            spriteRender = new SpriteRenderer(this, "");
+        }
 
         public Component GetComponent(string componentName)
         {

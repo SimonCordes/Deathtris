@@ -9,11 +9,12 @@ using System.Threading.Tasks;
 
 namespace Deathtris.Components
 {
-    class SpriteRenderer : Component
+    public class SpriteRenderer : Component
     {
         private string spriteName;
         private Texture2D sprite;
-
+        public Texture2D Sprite { get => sprite; set => sprite = value; }
+        
         /// <summary>
         /// Constructor for a spriterenderer without any animations.
         /// </summary>
