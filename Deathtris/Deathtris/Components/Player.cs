@@ -18,11 +18,12 @@ namespace Deathtris.Components
         public Player(float speed)
         { 
             this.speed = speed;
+            
         }
-
+        
         public void Move(Vector2 velocity)
         {
-
+            
             if (velocity != Vector2.Zero)
             {
                 velocity.Normalize();
@@ -34,12 +35,18 @@ namespace Deathtris.Components
         {
             collision = gameObject.GetMapCollision;
             transform = gameObject.GetTransform;
-            Console.WriteLine("lortet virker");
+            
         }
         public override void Update(GameTime gameTime)
         {
             InputHandler.Instance.Execute(this);
-            if ()
+
+
+            
+            if (collision.IsColliding(gameObject.GetMapCollision))
+            {
+                Console.WriteLine("lortet virker");
+            }
         }
 
     }
