@@ -9,12 +9,13 @@ namespace Deathtris.Components
 {
     class Player : Component
     {
+        string test;
         
         float speed;
         Vector2 position = new Vector2(400, 200);
 
         public Player(float speed)
-        {
+        { 
             this.speed = speed;
         }
 
@@ -33,5 +34,6 @@ namespace Deathtris.Components
             InputHandler.Instance.Execute(this);
 
         }
+
     }
 }
