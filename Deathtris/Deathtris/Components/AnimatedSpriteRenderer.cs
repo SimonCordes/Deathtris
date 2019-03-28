@@ -12,12 +12,12 @@ namespace Deathtris.Components
 {
     public enum PlayerDirection
     {
-        Idle,
+        
         Left,
+        Idle,
         Right,
-        Jumping,
-        //JumpingLeft,
-        //JumpingRight
+        JumpingLeft,
+        JumpingRight
     }
 
     class AnimatedSpriteRenderer : Component
@@ -90,6 +90,18 @@ namespace Deathtris.Components
             else if (keyState.IsKeyDown(Keys.D))
             {
                 PlayerDirection = PlayerDirection.Right;
+            }
+            else if (keyState.IsKeyDown(Keys.W))
+            {
+                PlayerDirection = PlayerDirection.JumpingLeft;
+            }
+            //else if (keyState.IsKeyDown(Keys.W) && keyState.IsKeyDown(Keys.A))
+            //{
+            //    PlayerDirection = PlayerDirection.JumpingLeft;
+            //}
+            else if (keyState.IsKeyDown(Keys.W) && keyState.IsKeyDown(Keys.D))
+            {
+                PlayerDirection = PlayerDirection.JumpingRight;
             }
             else { PlayerDirection = PlayerDirection.Idle; }
         }

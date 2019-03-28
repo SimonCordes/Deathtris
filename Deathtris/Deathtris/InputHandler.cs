@@ -17,7 +17,7 @@ namespace Deathtris
         {
             keybinds.Add(Keys.A, new movement(new Vector2(-1, 0)));
             keybinds.Add(Keys.D, new movement(new Vector2(1, 0)));
-            keybinds.Add(Keys.W, new movement(new Vector2(0, 1)));
+            keybinds.Add(Keys.W, new movement(new Vector2(0, -1)));
         }
         public static InputHandler Instance
         {
