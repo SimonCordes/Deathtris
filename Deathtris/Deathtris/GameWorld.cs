@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Deathtris.Components;
+using Microsoft.Xna.Framework.Audio;
+using Microsoft.Xna.Framework.Media;
 
 namespace Deathtris
 {
@@ -22,6 +24,8 @@ namespace Deathtris
         private static List<GameObject> gameObjectsToBeRemoved = new List<GameObject>();
         GameObject player = new GameObject(new Vector2(200,200));
         GameObject player2 = new GameObject(new Vector2(100, 100));
+        private SoundEffect effect;
+
         public static float deltaTime;
         /// <summary> 
         /// Gets the ContentManager.
@@ -65,14 +69,14 @@ namespace Deathtris
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
+        // logic for sound effect
+            //effect = Content.Load<SoundEffect>("AirJump");
+            //effect.Play();
 
 
-           
 
-            
-            
-            
-           
+
+
 
             // TODO: use this.Content to load your game content here
         }

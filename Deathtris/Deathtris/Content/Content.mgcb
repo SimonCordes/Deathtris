@@ -13,6 +13,12 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin AirJump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:AirJump.wav
+
 #begin idle_spritesheet.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -24,6 +30,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:idle_spritesheet.png
+
+#begin Jump.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Jump.wav
 
 #begin Skeleton.png
 /importer:TextureImporter
