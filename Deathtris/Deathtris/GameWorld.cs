@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Deathtris.Components;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Deathtris
 {
@@ -18,15 +19,21 @@ namespace Deathtris
         SpriteBatch spriteBatch;
         private Texture2D backgroundImage;
         //counter
+        private int counter = 0;
+        private float countInterval = 1f;
         private float currentTime = 0f;
-
+        private SoundEffect musicslow;
+        private SoundEffect musicmedium;
+        private SoundEffect musicfast;
         private static ContentManager contentManager;
         private static List<GameObject> gameObjectsInWorld = new List<GameObject>();
         private static List<GameObject> gameObjectsToBeAdded = new List<GameObject>();
         private static List<GameObject> gameObjectsToBeRemoved = new List<GameObject>();
+        private bool slowP = false;
+        private bool medP = false;
+        private bool fastP = false;
 
-        
-            
+
 
 
         GameObject player = new GameObject(new Vector2(1000,900));
@@ -76,6 +83,13 @@ namespace Deathtris
             spriteBatch = new SpriteBatch(GraphicsDevice);
             backgroundImage = Content.Load<Texture2D>("SpriteBagground");
 
+            musicslow = Content.Load<SoundEffect>("DNDslow");
+            musicmedium = Content.Load<SoundEffect>("DNDmedium");
+            musicfast = Content.Load<SoundEffect>("DNDfast");
+
+            musicslow.Play();
+            
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -107,15 +121,36 @@ namespace Deathtris
             currentTime += (float)gameTime.ElapsedGameTime.TotalSeconds;
             Console.WriteLine(currentTime);
 
-            if (currentTime == 10)
+            if (currentTime >= countInterval)
             {
-                //music 2
+                counter++;
+                currentTime -= countInterval;
 
             }
-            else if (currentTime == 20)
+
+            if (counter == 10)
+            {
+                //music 2
+                if (medP == false)
+                {
+                    Console.WriteLine("i play");
+                    medP = true;
+                    
+                    musicmedium.Play();
+                    musicslow.Dispose();
+                }
+               
+            }
+            else if (counter == 20 )
             {
                 //music 3
-
+                if (fastP == false)
+                {
+                    fastP = true;
+                    musicfast.Play();
+                    musicmedium.Dispose();
+                }
+               
             }
             else  
             {
